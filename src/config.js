@@ -1,5 +1,6 @@
 export const config = {
 
-    api : "https://officemanagement-server.onrender.com"
+    api : "https://encouraging-pike-jumpsuit.cyclic.app"
+    // api : "https://officemanagement-server.onrender.com"
     
 }
