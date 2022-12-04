@@ -12,6 +12,21 @@ function Table() {
         pagenate(0)
     }, [values]);
 
+    function Search(){
+        var input = document.getElementById("search").value;
+        var result = values.filter((value)=>{
+            if(value.name.includes(input)){
+                return value
+            }
+        })
+        console.log(input)
+        if(!input){
+            pagenate(0)
+        }else{
+            setTablelist(result)
+        }
+    }
+
     async function Assign(id) {
 
         try {
@@ -60,6 +75,11 @@ function Table() {
 
     return (
         <div class="table-responsive mt-3 mt-md-4 mb-2">
+                <div class="container-fluid mb-4" style={{paddingLeft:"450px"}}>
+                    <form class="d-flex" role="search">
+                        <input style={{width:"300px"}} class="form-control me-2" id='search' type="search" placeholder="Search by employee name..." onKeyUp={Search} aria-label="Search"/>
+                    </form>
+                </div>
             <table class="table table-bordered" >
                 <thead>
                     <tr>
@@ -100,7 +120,7 @@ function Table() {
             </table>
             <div id='paginate'>
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination" style={{ marginLeft: "300px", marginTop: "50px" }}>
+                    <ul class="pagination" style={{ marginLeft: "250px", marginTop: "50px" }}>
                         {
                             <button class={`btn btn-outline-secondary ${currentPage !== 0 ? "active" : "disabled"} mr-1`} onClick={prev}>Previous</button>
                         }
@@ -117,7 +137,7 @@ function Table() {
                         }
                         {
                             // currentPage !== (Math.ceil(values.length / PerPage)) - 1 ? <button class="page-link" onClick={next}>Next</button> : null
-                            <button class={`btn btn-outline-secondary ml-1 ${ currentPage !== (Math.ceil(values.length / PerPage)) - 1 ? "active" : "disabled"}`} onClick={next}>Next</button>
+                            <button class={`btn btn-outline-secondary ml-1 ${currentPage !== (Math.ceil(values.length / PerPage)) - 1 ? "active" : "disabled"}`} onClick={next}>Next</button>
                         }
                     </ul>
                 </nav>
