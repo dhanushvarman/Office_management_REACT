@@ -12,40 +12,18 @@ function Table() {
         pagenate(0)
     }, [values]);
 
-    function Search(){
+    function Search() {
         var input = document.getElementById("search").value;
-        var result = values.filter((value)=>{
-            if(value.name.includes(input)){
+        var result = values.filter((value) => {
+            if (value.name.includes(input)) {
                 return value
             }
         })
         console.log(input)
-        if(!input){
+        if (!input) {
             pagenate(0)
-        }else{
+        } else {
             setTablelist(result)
-        }
-    }
-
-    async function Assign(id) {
-
-        try {
-            var value = [{ available: false }]
-            await axios.put(`${config.api}/employee/assign/${id}`, value)
-            alert("Work Assigned")
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    async function Unassign(id) {
-
-        try {
-            var value = [{ available: true }]
-            await axios.put(`${config.api}/employee/assign/${id}`, value)
-            alert("Work Unassigned")
-        } catch (error) {
-            console.log(error)
         }
     }
 
@@ -75,11 +53,11 @@ function Table() {
 
     return (
         <div class="table-responsive mt-3 mt-md-4 mb-2">
-                <div class="container-fluid mb-4" style={{paddingLeft:"450px"}}>
-                    <form class="d-flex" role="search">
-                        <input style={{width:"300px"}} class="form-control me-2" id='search' type="search" placeholder="Search by employee name..." onKeyUp={Search} aria-label="Search"/>
-                    </form>
-                </div>
+            <div class="container-fluid mb-4" style={{ paddingLeft: "450px" }}>
+                <form class="d-flex" role="search">
+                    <input style={{ width: "300px" }} class="form-control me-2" id='search' type="search" placeholder="Search by employee name..." onKeyUp={Search} aria-label="Search" />
+                </form>
+            </div>
             <table class="table table-bordered" >
                 <thead>
                     <tr>
@@ -99,9 +77,9 @@ function Table() {
                                     <div class="custom-control custom-checkbox">
                                         {
                                             value.available == true ?
-                                                <button className='btn btn-outline-success btn-sm' onClick={() => { Assign(value._id) }}>Assign Work</button>
+                                                <Link to={`/assign/${value._id}`} type='button' className='btn btn-outline-success btn-sm' data-toggle="modal" data-target="#assignEmployeeModal" >Assign Work</Link>
                                                 :
-                                                <button className='btn btn-outline-warning btn-sm' onClick={() => { Unassign(value._id) }}>Unassign Work</button>
+                                                <Link to={`/unassign/${value._id}`} type='button' className='btn btn-outline-warning btn-sm' data-toggle="modal" data-target="#UnassignModal" >UnAssign Work</Link>
                                         }
                                     </div>
                                 </td>
