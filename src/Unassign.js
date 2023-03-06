@@ -29,9 +29,9 @@ function Unassign() {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="container">
-                        <input type="text" id="disabledTextInput" class="form-control mt-4" placeholder={res[0].name} />
-                        <input type="text" id="disabledTextInput" class="form-control mt-4" placeholder={res[0].department} />
-                        <input type="text" id="disabledTextInput" class="form-control mt-4" placeholder={res[0].task} />
+                        <input type="text" id="disabledTextInput" class="form-control mt-4" style={{color:"black"}} placeholder={res[0].name} disabled/>
+                        <input type="text" id="disabledTextInput" class="form-control mt-4" style={{color:"black"}} placeholder={res[0].department} disabled/>
+                        <input type="text" id="disabledTextInput" class="form-control mt-4" style={{color:"black"}} placeholder={res[0].task} disabled/>
                     </div>
 
                     <div class="modal-body">
